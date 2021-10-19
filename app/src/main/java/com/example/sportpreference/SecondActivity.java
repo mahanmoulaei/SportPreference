@@ -25,6 +25,35 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
         textViewName = findViewById(R.id.textViewName);
         textViewSport = findViewById(R.id.textViewSport);
         btnReturn = findViewById(R.id.buttonReturn);
+        btnReturn.setOnClickListener(this);
+
+        String name = getIntent().getStringExtra("name");
+        String label = textViewName.getText().toString();
+
+        int idSport = getIntent().getIntExtra("sport", -100);
+
+        textViewName.setText(label + " " + name);
+
+        String sport = "No Sport!";
+        switch (idSport) {
+            case R.id.radioButtonSoccer: {
+                sport = "Soccer.";
+                break;
+            }
+            case R.id.radioButtonHandball: {
+                sport = "Handball.";
+                break;
+            }
+            case R.id.radioButtonHockey: {
+                sport = "Hockey.";
+                break;
+            }
+        }
+        textViewSport.setText(textViewSport.getText().toString() +  " " + sport);
     }
 
+    @Override
+    public void onClick(View view) {
+        finish();
+    }
 }
